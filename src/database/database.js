@@ -3,7 +3,7 @@ class DBCitasMedicas {
     constructor() {
     }
 
-    dbCitas() {
+    getDBCitas() {
         return this.citas;
     }
 

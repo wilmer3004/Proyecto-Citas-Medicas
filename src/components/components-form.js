@@ -65,7 +65,7 @@ export class ComponentForm extends LitElement{
     
         // Agregar cita a la base de datos
         this.cita1.dbAdd(persona);
-        console.log(this.cita1.dbCitas())
+        console.log(this.cita1.getDBCitas())
     }
 
 }
