@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit-element";
 import navStyle from "./navStyle";
 import { FormProyect } from "../form/form-proyect";
+import { Card } from "../card/card";
 
 export class Nav extends LitElement{
     static get styles(){
@@ -10,7 +11,7 @@ export class Nav extends LitElement{
         return {valor:{type : String}}
     }
     static get scopedElements(){
-        return{"form-proyect":FormProyect}
+        return{"form-proyect":FormProyect, "card":Card}
     }
     constructor(){
         super()
