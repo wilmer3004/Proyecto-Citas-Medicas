@@ -4,11 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": ""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "lit-element": "^3.0.0-rc.4"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilmer3004/Proyecto-Citas-Medicas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wilmer3004/Proyecto-Citas-Medicas/issues"
+  },
+  "homepage": "https://github.com/wilmer3004/Proyecto-Citas-Medicas#readme"
 }
