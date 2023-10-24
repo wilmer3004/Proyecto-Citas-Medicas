@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit-element";
 import cardStyle from "./cardStyle";
 
-export class Card extends LitElement{
+export class CardC extends LitElement{
 
     static get styles(){
         return [cardStyle]
@@ -30,4 +30,4 @@ export class Card extends LitElement{
     }
 }
 
-customElements.define('card-cita', Card)
+customElements.define('card-cita', CardC)
