@@ -1,7 +1,7 @@
 import { LitElement, html } from "lit-element";
 import navStyle from "./navStyle";
 import { FormProyect } from "../form/form-proyect";
-import { Card } from "../card/card";
+import { ListProyect } from "../list/list-proyect";
 
 export class Nav extends LitElement{
     static get styles(){
@@ -11,7 +11,7 @@ export class Nav extends LitElement{
         return {valor:{type : String}}
     }
     static get scopedElements(){
-        return{"form-proyect":FormProyect, "card":Card}
+        return{"form-proyect":FormProyect, "list-proyect":ListProyect}
     }
     constructor(){
         super()
@@ -23,7 +23,7 @@ export class Nav extends LitElement{
                 this.valor = html`<form-proyect></form-proyect>`;
                 break;
             case 'agendadas':
-                this.valor = html`<card-cita></card-cita>`;
+                this.valor = html`<list-proyect></list-proyect>`;
             default:
                 break;
         }
@@ -36,7 +36,6 @@ export class Nav extends LitElement{
                 <ul>
                     <li><a href="#" @click=${() =>this.renderComp('agendar')}>Agendar Cita</a></li>
                     <li><a href="#" @click=${() =>this.renderComp('agendadas')}>Citas Agendadas</a></li>
-                    <!-- <li></li> -->
                 </ul>
             </div>
         </div>
