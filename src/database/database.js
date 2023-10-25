@@ -8,6 +8,7 @@ class DBCitasMedicas {
     }
 
     dbAdd(persona) {
+        this.citas.pop();
         this.citas.push(persona);
     }
 

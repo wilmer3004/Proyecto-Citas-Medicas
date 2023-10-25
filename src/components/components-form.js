@@ -20,11 +20,10 @@ export class ComponentForm extends LitElement{
         this.nombrePersona='';
         this.nombreDoctor='';
         this.fechaCita='';
-
         this.cita1 = new DBCitasMedicas();
 
     }
-    
+
     render(){
         return html`
         <div>
@@ -44,6 +43,7 @@ export class ComponentForm extends LitElement{
             <label>Fecha Cita</label>
             <input type='time' id='horaCita'>
             <button @click=${this.agregarCita}>Agregar Cita</button>
+            <button @click=${this.mostrarCita}>Son las citas</button>
         </div>
         `
     }
@@ -54,20 +54,32 @@ export class ComponentForm extends LitElement{
         const fechaCita = this.shadowRoot.getElementById('fechaCita').value;
         const horaCita = this.shadowRoot.getElementById('horaCita').value;
     
-        // Validación de valores (puedes hacer la validación aquí)
-    
         const persona = {
             "idPersona": idPersona,
             "nombrePersona": nombrePersona,
             "nombreDoctor": nombreDoctor,
-            "fechaCita": fechaCita + ' ' + horaCita  // Combina la fecha y la hora
+            "fechaCita": fechaCita + ' ' + horaCita
         };
     
-        // Agregar cita a la base de datos
-        this.cita1.dbAdd(persona);
-        console.log(this.cita1.getDBCitas())
-    }
+        
+        
+        // Obtener citas del Local Storage (si existen)
+        let citasLocalStorage = JSON.parse(localStorage.getItem('CitasMedicas')) || [];
+        
+        // Agregar la nueva cita al array del Local Storage
+        citasLocalStorage.push(persona);
+        
+        // Guardar el array actualizado en el Local Storage
+        localStorage.setItem('CitasMedicas', JSON.stringify(citasLocalStorage));
 
+        // Agregar cita a la base de datos
+        this.cita1.dbAdd(localStorage.getItem('CitasMedicas'))||[];
+        console.log(this.cita1.getDBCitas());
+    }
+    mostrarCita(){
+        this.cita1.dbAdd(localStorage.getItem('CitasMedicas'))||[];
+        console.log(this.cita1.getDBCitas());
+    }
 }
 
 customElements.define('component-form',ComponentForm)
