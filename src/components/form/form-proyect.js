@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit-element";
 import formStyle from "./form-style.js";
 import {DBCitasMedicas} from "../../database/database";
+import { CardC } from "../card/card";
 
 export class FormProyect extends LitElement {
 
@@ -27,6 +28,7 @@ export class FormProyect extends LitElement {
     this.nombreDoctor = '';
     this.fechaCita = '';
 
+    this.valor = ''
     this.cita1 = new DBCitasMedicas();
 
   }
@@ -54,7 +56,23 @@ export class FormProyect extends LitElement {
 
     return fecha_minima;
   }
-
+  // Render Comp
+  static get properties(){
+    return {valor:{type : String}}
+  }
+  static get scopedElements(){
+    return{"card-cita":CardC}
+  }
+  renderComp(componente){
+    switch (componente) {
+        case 'card':
+          this.valor = html`<card-cita></card-cita>`
+            break;
+        default:
+            break;
+    }
+    return this.valor;
+  }
   render() {
     return html` 
     <div class="container">
@@ -102,10 +120,15 @@ export class FormProyect extends LitElement {
                 <option value="17:00">05:00 PM</option>
                 <option value="18:00">06:00 PM</option>
               </select>
-              <button @click=${this.agregarCita} type="submit">Enviar Datos</button>
+              <button @click=${this.agregarCita, () =>this.renderComp('card')} type="submit">Enviar Datos</button>
             </div>
           </div>
         </div>
+        <main>
+          <div class="contenedor-comp">
+            ${this.renderComp()}
+          </div>
+        </main>
       </div>
       <div class="mensaje" id="mensaje"></div>
     </div>`;
