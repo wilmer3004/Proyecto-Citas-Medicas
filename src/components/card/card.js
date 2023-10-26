@@ -14,7 +14,7 @@ export class CardC extends LitElement{
     }
     constructor(){
         super();
-        this.citas = JSON.parse(localStorage.getItem('CitasMedicas')) || [];;
+        this.citas = JSON.parse(localStorage.getItem('CitasMedicas'))|| [];
     }
     render(){
         return html`
@@ -28,7 +28,7 @@ export class CardC extends LitElement{
                     <h3>Datos De La Cita</h3>
                 </div>
                 <div class=contenedor-cuerpo>
-                    <p>Paciente: ${this.citas[this.citas.citas.length - 1].nombrePersona}</p>
+                    <p>Paciente: ${this.citas[this.citas.length - 1].nombrePersona}</p>
                     <p>N-Documento: ${this.citas[this.citas.length - 1].idPersona}</p>
                     <p>Doctor: ${this.citas[this.citas.length -1].nombreDoctor}</p>
                     <p>Fecha/Hora: ${this.citas[this.citas.length -1].fechaCita}</p>

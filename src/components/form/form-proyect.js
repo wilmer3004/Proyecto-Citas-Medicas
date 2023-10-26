@@ -32,6 +32,9 @@ export class FormProyect extends LitElement {
     this.cita1 = JSON.parse(localStorage.getItem('CitasMedicas'))|| [];
 
   }
+  static get scopedElements(){
+    return{"card-cita":CardC}
+  }
 
   /* Función para que la fecha mínima seleccionable sea la actual, 
   no se podrán seleccionar dias anteriores*/
@@ -67,6 +70,9 @@ export class FormProyect extends LitElement {
     switch (componente) {
         case 'card':
           this.valor = html`<card-cita></card-cita>`
+          setTimeout(() => {
+            this.valor = '';
+        }, 9000);
             break;
         default:
             break;
@@ -121,6 +127,7 @@ export class FormProyect extends LitElement {
                 <option value="18:00">06:00 PM</option>
               </select>
               <button @click=${this.agregarCita} type="submit">Enviar Datos</button>
+              <button @click=${()=> this.renderComp('card')}>Mostrar Card</button>
             </div>
           </div>
         </div>
@@ -185,7 +192,6 @@ export class FormProyect extends LitElement {
         localStorage.setItem('CitasMedicas', JSON.stringify(citasLocalStorage));
 
         console.log(this.cita1);
-    
   }
 
 }

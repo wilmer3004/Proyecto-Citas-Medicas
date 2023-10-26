@@ -1,6 +1,5 @@
 import { LitElement, html } from "lit-element";
 import listStyle from "./list-style.js";
-import {DBCitasMedicas} from "../../database/database";
 
 export class ListProyect extends LitElement {
 
@@ -16,8 +15,7 @@ export class ListProyect extends LitElement {
 
       constructor(){
         super();
-        this.citas =new DBCitasMedicas();
-        this.citas1 = this.citas.getDBCitas();
+        this.citas1 = JSON.parse(localStorage.getItem('CitasMedicas'))|| [];
     }
 
     render(){
