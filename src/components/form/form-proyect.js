@@ -29,7 +29,6 @@ export class FormProyect extends LitElement {
     this.cont = 0;
 
     this.valor = ''
-    this.citasLocalStorage = JSON.parse(localStorage.getItem('CitasMedicas')) || [];
     this.cita1 = JSON.parse(localStorage.getItem('CitasMedicas'))|| [];
 
   }
@@ -176,25 +175,15 @@ export class FormProyect extends LitElement {
     };
 
      // Obtener citas del Local Storage (si existen)
-        
+        let citasLocalStorage = JSON.parse(localStorage.getItem('CitasMedicas')) || [];
         
         // Agregar la nueva cita al array del Local Storage
-        this.citasLocalStorage.push(persona);
+        citasLocalStorage.push(persona);
         
+        this.cita1 = citasLocalStorage;
         // Guardar el array actualizado en el Local Storage
-        localStorage.setItem('CitasMedicas', JSON.stringify(this.citasLocalStorage));
-        
-        let citasLocalArray = JSON.parse(localStorage.getItem('CitasMedicas')) || [];
+        localStorage.setItem('CitasMedicas', JSON.stringify(citasLocalStorage));
 
-        // var data = citasLocalArray
-        // this.cita1.dbAdd(data);
-        // // for (const key in citasLocalArray) {
-        // //   this.cont+=1;
-        // //   this.cita1.dbAdd(citasLocalArray[key],this.cont);
-        // // }
-        // // this.cont = 0;
-
-        // // Agregar cita a la base de datos
         console.log(this.cita1);
     
   }
