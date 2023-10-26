@@ -1,6 +1,5 @@
 import { LitElement, html } from "lit-element";
 import formStyle from "./form-style.js";
-import {DBCitasMedicas} from "../../database/database";
 import { CardC } from "../card/card";
 
 export class FormProyect extends LitElement {
@@ -27,9 +26,11 @@ export class FormProyect extends LitElement {
     this.nombrePersona = '';
     this.nombreDoctor = '';
     this.fechaCita = '';
+    this.cont = 0;
 
     this.valor = ''
-    this.cita1 = new DBCitasMedicas();
+    this.citasLocalStorage = JSON.parse(localStorage.getItem('CitasMedicas')) || [];
+    this.cita1 = JSON.parse(localStorage.getItem('CitasMedicas'))|| [];
 
   }
 
@@ -120,7 +121,7 @@ export class FormProyect extends LitElement {
                 <option value="17:00">05:00 PM</option>
                 <option value="18:00">06:00 PM</option>
               </select>
-              <button @click=${this.agregarCita, () =>this.renderComp('card')} type="submit">Enviar Datos</button>
+              <button @click=${this.agregarCita} type="submit">Enviar Datos</button>
             </div>
           </div>
         </div>
@@ -154,7 +155,7 @@ export class FormProyect extends LitElement {
 
      // Verificar si ya existe una cita con la misma fecha y hora
      let citaExistente = false;
-     for (const cita of this.cita1.getDBCitas()) {
+     for (const cita of this.cita1) {
          if (cita.fechaCita === fechaHoraCita && cita.nombreDoctor === nombreDoctor) {
              citaExistente = true;
              break;
@@ -174,11 +175,32 @@ export class FormProyect extends LitElement {
       "fechaCita": fechaHoraCita 
     };
 
-    // Agregar cita a la base de datos
-    this.cita1.dbAdd(persona);
-    console.log(this.cita1.getDBCitas())
+     // Obtener citas del Local Storage (si existen)
+        
+        
+        // Agregar la nueva cita al array del Local Storage
+        this.citasLocalStorage.push(persona);
+        
+        // Guardar el array actualizado en el Local Storage
+        localStorage.setItem('CitasMedicas', JSON.stringify(this.citasLocalStorage));
+        
+        let citasLocalArray = JSON.parse(localStorage.getItem('CitasMedicas')) || [];
+
+        // var data = citasLocalArray
+        // this.cita1.dbAdd(data);
+        // // for (const key in citasLocalArray) {
+        // //   this.cont+=1;
+        // //   this.cita1.dbAdd(citasLocalArray[key],this.cont);
+        // // }
+        // // this.cont = 0;
+
+        // // Agregar cita a la base de datos
+        console.log(this.cita1);
+    
   }
 
 }
 
 customElements.define("form-proyect", FormProyect);
+
+
