@@ -40,9 +40,10 @@ export class FormProyect extends LitElement {
   no se podrán seleccionar dias anteriores*/
 
   fechaMinima() {
+
     const fecha = new Date();
     const anio = fecha.getFullYear();
-    const dia = fecha.getDate();
+    let dia = fecha.getDate();
     let _mes = fecha.getMonth();
 
     //si el mes va de 1-9 se le agrega un 0 para que concuerde con el formato de fecha
@@ -54,11 +55,19 @@ export class FormProyect extends LitElement {
       mes = _mes.toString();
     }
 
+    if (dia < 10) {
+      dia = "0" + dia;
+    } else {
+      dia = dia.toString();
+    }
+
     const fecha_minima = anio + '-' + mes + '-' + dia;
     console.log(fecha_minima);
 
     return fecha_minima;
   }
+    
+  
   // Render Comp
   static get properties(){
     return {valor:{type : String}}
