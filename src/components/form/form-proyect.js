@@ -15,8 +15,8 @@ export class FormProyect extends LitElement {
       nombrePersona: { type: String },
       nombreDoctor: { type: String },
       fechaCita: { type: String },
-      horaCita: { type: String }
-
+      horaCita: { type: String },
+      valor:{type : String}
     }
   }
   // Constructor
@@ -54,7 +54,7 @@ export class FormProyect extends LitElement {
     } else {
       mes = _mes.toString();
     }
-
+    //si el dia va de 1-9 se le agrega un 0 para que concuerde con el formato de fecha
     if (dia < 10) {
       dia = "0" + dia;
     } else {
@@ -65,15 +65,6 @@ export class FormProyect extends LitElement {
     console.log(fecha_minima);
 
     return fecha_minima;
-  }
-    
-  
-  // Render Comp
-  static get properties(){
-    return {valor:{type : String}}
-  }
-  static get scopedElements(){
-    return{"card-cita":CardC}
   }
   renderComp(componente){
     switch (componente) {
